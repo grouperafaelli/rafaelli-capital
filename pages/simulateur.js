@@ -2,24 +2,23 @@ import { useState } from 'react';
 
 export default function Simulateur() {
   const [revenu, setRevenu] = useState('');
+  const [tmi, setTmi] = useState('');
   const [resultat, setResultat] = useState(null);
 
   const calculer = () => {
-    const effEpargne = (parseFloat(revenu || 0) * 0.25).toFixed(2);
-    setResultat(effEpargne);
+    const base = parseFloat(revenu || 0);
+    const taux = parseFloat(tmi || 0) / 100;
+    const reduc = base * taux * 0.63; // 63% sur 9 ans
+    setResultat(reduc.toFixed(0));
   };
 
   return (
-    <div style={{ padding: '2rem', fontFamily: 'Arial' }}>
-      <h1>Simulateur de capacité d'investissement</h1>
-      <input
-        type="number"
-        placeholder="Revenu mensuel (€)"
-        value={revenu}
-        onChange={(e) => setRevenu(e.target.value)}
-      />
+    <div style={{ fontFamily: 'Arial', padding: '2rem' }}>
+      <h1>Simulateur Denormandie</h1>
+      <input placeholder="Revenu imposable (€)" value={revenu} onChange={e => setRevenu(e.target.value)} /><br/>
+      <input placeholder="TMI (%)" value={tmi} onChange={e => setTmi(e.target.value)} /><br/>
       <button onClick={calculer}>Calculer</button>
-      {resultat && <p>Effort d’épargne estimé : {resultat} €/mois</p>}
+      {resultat && <p>💰 Réduction d’impôt estimée sur 9 ans : {resultat} €</p>}
     </div>
   );
 }

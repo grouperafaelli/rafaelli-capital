@@ -1,9 +1,15 @@
+import Link from 'next/link';
+
 export default function Home() {
   return (
-    <div style={{ padding: '2rem', fontFamily: 'Arial' }}>
-      <h1>Bienvenue sur RAFAELLI CAPITAL</h1>
-      <p>Votre partenaire financement immobilier & investissement intelligent.</p>
-      <a href="/simulateur">Simuler mon projet</a>
+    <div style={{ fontFamily: 'Arial', padding: '2rem' }}>
+      <img src="/logo.svg" alt="Rafaelli Capital" width="200" />
+      <h1>Bienvenue chez RAFAELLI CAPITAL</h1>
+      <p>Votre partenaire stratégique en financement et investissement.</p>
+      <nav style={{ marginTop: '2rem' }}>
+        <Link href="/simulateur">🧮 Simulateur fiscal</Link><br/>
+        <Link href="/contact">📩 Contact & Devis</Link>
+      </nav>
     </div>
   );
 }
